@@ -18,7 +18,7 @@ df.dropna(inplace=True)
 #Criando uma lista que contém as somas totais de cada coluna do conjunto de dados
 #e substituindo os valores marcados com "?" por NaN
 somas = []
-
+#teste
 for (nome_col, dados_col) in df.iteritems():
   soma = 0
   for (index, valor) in zip(df[nome_col].index, df[nome_col]):
