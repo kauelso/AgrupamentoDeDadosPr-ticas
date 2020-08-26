@@ -2,7 +2,9 @@ import pandas as pd
 import numpy as np
 from completar_dados import *
 
-input_name = "iris.csv"
+print("Insira abaixo o nome do arquivo que será utilizado, com extensão(exemplo.csv).\nEle deve estar na mesma pasta do programa.")
+
+input_name = input("Nome do arquivo:")
 df = pd.read_csv(input_name)
 
 #Removendo colunas que não são numéricas
