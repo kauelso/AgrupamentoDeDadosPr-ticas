@@ -12,4 +12,4 @@ df.dropna(inplace=True)
 #Imputando a média nos valores que estão faltando
 df.fillna(df.mean(), inplace=True)
 
-distancia_todos(df, 1)
+output_txt(distancia_todos(df, 1))
