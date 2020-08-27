@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 
-def distancia(obj1, obj2, dist=1):
+#Função que calcula a distância Euclidiana ou Manhattan
+def distancia(obj1, obj2, dist):
   
   lista = []
 
@@ -14,10 +15,9 @@ def distancia(obj1, obj2, dist=1):
 
   return round(resultado, 2)
 
-def distancia_todos(df, dist=1):
-  if dist != 1 and dist != 2:
-    return 'Somente as distâncias 1 (euclediana) e 2 (manhattan) estão disponíveis!'
-    
+#Função que calcula a distância entre todos os pares
+def distancia_todos(df, dist): 
+
   listas = []
   for i, (nome_col, dados_row) in enumerate(df.iterrows()):
     lista = (dados_row.values.tolist())
@@ -32,6 +32,7 @@ def distancia_todos(df, dist=1):
     resultado.append(r)
   return resultado
 
+#Função que insere as distâncias em um arquivo txt
 def output_txt(listas):
   f = open("output.txt", "w")
   for lista in listas:
