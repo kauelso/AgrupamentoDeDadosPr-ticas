@@ -43,6 +43,7 @@ def output_txt(listas):
   f.close()
 
 def centroides(k, data):
+  np.random.seed(200)
   centroides = []
   while True:
     n = random.randrange(0, data.shape[0])
@@ -57,3 +58,15 @@ def percorre(data, centros):
     for centro in enumerate(centros):
       print(distancia(dados_row, centro, 1))
       break
+
+def distancia_centroide(k,df):
+    centros = centroides(k,df)
+    for i in range(df.shape[0]):
+        distancias = []
+        inter =[]
+        for m in centros:
+            dist = distancia(df.iloc[i], df.iloc[m])
+            inter.append(dist)
+            valor_min = min(inter)
+            distancias.append(valor_min)
+            print(distancias)
