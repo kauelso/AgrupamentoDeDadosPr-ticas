@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import random
 
 def distancia(obj1, obj2, dist=1):
   
