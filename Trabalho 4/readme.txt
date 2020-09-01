@@ -7,7 +7,7 @@ Instruções caso tenha apenas o pyhton 3 instalado:
 3-Rode o comando:python atividade_4.py
 4-O resultado será gerado no arquivo "output.txt"
 OBS = O nome do arquivo deve ser colocado como input na execução do programa.
-OBS² = O arquivo "completar_dados.py" possui funções implementadas em outras tarefas que foram utilizadas nessa.
+OBS² = O arquivo "completar_dados.py" possui todas as funções implementadas necessárias para a execução da tarefa.
 
 Instruções caso tenhas o pyhton 3 e o python 2 instalado:
 1-Instale a biblioteca "pandas"(caso ainda não tenha) com o comando:pip3 install pandas (pode precisar de permissão de administrador)
@@ -15,4 +15,4 @@ Instruções caso tenhas o pyhton 3 e o python 2 instalado:
 3-Rode o comando:python3 atividade_4.py
 4-O resultado será gerado no arquivo "output.txt"
 OBS = O nome do arquivo deve ser colocado como input na execução do programa.
-OBS² = O arquivo "completar_dados.py" possui funções implementadas em outras tarefas que foram utilizadas nessa.
+OBS² = O arquivo "completar_dados.py" possui todas as funções implementadas necessárias para a execução da tarefa.
