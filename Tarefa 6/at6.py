@@ -11,10 +11,8 @@ df = df[df.columns[:-1]]
 
 #df.head()
 
-<<<<<<< HEAD
 k = int(input("Numero de centroides: "))
-=======
-k = 3 #int(input("Numero de centroides: "))
+
 centroides = centroides(k,df)
 for i in range(0,100):
     grupos = []
@@ -29,7 +27,6 @@ for i in range(0,100):
         centroides_aux[grp] = np.mean(grupos[grp])
     if centroides == centroides_aux:
         break
->>>>>>> f0d196ca1362955d79ea2f3239c2b2cd60c500a6
 
 KMeans(k, df, max_interacao=100)
 
