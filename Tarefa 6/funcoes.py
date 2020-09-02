@@ -6,7 +6,7 @@ def KMeans(k, df, max_interacao):
   centroides = centroides(k, df)
   print(centroides)
 
-def distancia(obj1, obj2, dist=1):
+def distancia(obj1, obj2, dist=2):
   
   lista = []
 
