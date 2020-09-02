@@ -19,8 +19,8 @@ def centroides(k, data):
     if len(centroides) == k:
       return (centroides)
 
-
-def distancia(obj1, obj2, dist=1):
+def distancia(obj1, obj2, dist=2):
+  
   lista = []
 
   for (valor1, valor2) in zip(obj1, obj2):
@@ -58,24 +58,24 @@ def output_txt(listas):
     f.write("\n")
   f.close()
 
-
-#Talvez apagar
-#def distancia_centroide(k, df):
-#    centros = centroides(k,df)
-#    for i in range(df.shape[0]):
-#        distancias = []
-#        inter =[]
-#        for m in centros:
-#            dist = distancia(df.iloc[i], df.iloc[m])
-#            inter.append(dist)
-#            valor_min = min(inter)
-#            distancias.append(valor_min)
-#            print(distancias)
-
-
 #def percorre(data, centros):
 #  lista_dist = []
 #  for i, (nome_col, dados_row) in enumerate(data.iteritems()):
 #    for centro in enumerate(centros):
 #      print(distancia(dados_row, centro, 1))
 #      break
+  
+  def agrup_inicial(centroides, df=df):
+    clusters = {n: 0 for n in range(0,df.shape[0])}
+    for i in range(0, df.shape[0]):
+      distancias = []
+      for e, m in enumerate(centroides):
+        dist = distancia(df.iloc[i], df.iloc[m])
+        distancias.append(dist)
+        if (e+1) == len(centroides):
+          menor = min(distancias)
+          for b, c in zip(distancias, centroides):
+            if menor == b:
+              clusters[i] = c
+              break
+    return clusters
