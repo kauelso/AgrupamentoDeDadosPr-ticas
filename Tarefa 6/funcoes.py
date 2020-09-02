@@ -36,7 +36,7 @@ def percorre(data, centros):
       print(distancia(dados_row, centro, 1))
       break
 
-def distancia_centroide(k,df):
+def distancia_centroide(k, df):
     centros = centroides(k,df)
     for i in range(df.shape[0]):
         distancias = []
