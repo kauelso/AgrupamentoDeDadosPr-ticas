@@ -10,14 +10,16 @@ def KMeans(k, df, max_interacao):
 
 
 def centroides(k, data):
-  np.random.seed(200)
-  centroides = []
-  while True:
-    n = random.randrange(0, data.shape[0])
-    if n not in centroides:
-      centroides.append(n)
-    if len(centroides) == k:
-      return (centroides)
+  centroides = {}
+
+  for i in range(k):
+    valores = []
+    for c in df.columns:
+      valores.append(round(random.uniform(min(df[c]), max(df[c])),2))
+
+    centroides[i+1] = valores
+
+  return centroides
 
 def distancia(obj1, obj2, dist=2):
   
