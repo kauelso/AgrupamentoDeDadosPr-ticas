@@ -56,22 +56,37 @@ def distancia(obj1, obj2, dist=1):
   return round(resultado, 2)
 
 # Função que realiza o agrupamento dos pontos da base de dados 
-def agrup_inicial(centroides, df):
-  clusters = {n: 0 for n in range(0,df.shape[0])}
-
-  for i in range(0, df.shape[0]):
-    distancias = []
-    for e, m in enumerate(centroides):
-      dist = distancia(df.iloc[i], df.iloc[m])
-      distancias.append(dist)
-      if (e+1) == len(centroides):
-        menor = min(distancias)
-        for b, c in zip(distancias, centroides):
-          if menor == b:
-            clusters[i] = c
-            break
-
+def agrup(centroides, df=df):
+  clusters = {}
+  for z in range(1,k+1):
+    for r in range(k):
+      lista = [[]]
+    clusters[z] = lista
+  for m in range(k):
+    for i in range(df.shape[0]):
+      menor = menor_dist(centroides, i, df)
+      for k1, v in enumerate(clusters.values()):
+        if menor[0] == k1:
+          if df.iloc[i].values.tolist() not in v:
+            v.remove([])
+            v.append(df.iloc[i].values.tolist())
+            clusters[k1+1] = v
+        
   return clusters
+
+# Função que retorna o indice do centroide e a menor distancia do objeto a esse centroide
+def menor_dist(centroides, i, df=df):
+  distancias = []
+  for e, c in enumerate(centroides.values()):
+    dist = distancia(df.iloc[i], c)
+    distancias.append(dist)
+  for j, d in enumerate(distancias):
+    if j == 0:
+      menor = (j, d)
+    elif (d < menor[1]):
+      menor = (j, d)
+
+  return menor
 
 # Função final que escreve no arquivo
 def output_txt(listas):
