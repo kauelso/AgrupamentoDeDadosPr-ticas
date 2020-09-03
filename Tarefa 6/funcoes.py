@@ -5,21 +5,15 @@ import random
 
 def KMeans(k, df, max_interacao):
   centroids = centroides(k, df)
-  agrup_ini = agrup(centroids, df, k)
-
+  agrupamento = agrup(centroids, df, k)
   for i in range(max_interacao -1):
-    novos_centroids = media_novos_centroides(agrup_ini)
-    novo_agrupamento = agrup(novos_centroids, df, k)
-
-    # Checando se converge já na primeira interação
+    novos_centroids = media_novos_centroides(agrupamento)
     if centroids == novos_centroids:
       break
-
-    novos_centroids = media_novos_centroides(agrup_ini)
-
-    if agrup_anterior == novo_agrupamento:
-      return novo_agrupamento
-      break    
+    else:
+      centroids = novos_centroids
+    agrupamento = agrup(centroids, df, k)
+  return agrupamento 
 
 # Função que calcula os primeiros centroides aleatoriamente
 def centroides(k, df):

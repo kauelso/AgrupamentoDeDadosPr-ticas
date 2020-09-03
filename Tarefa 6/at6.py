@@ -14,4 +14,4 @@ df = df[df.columns[:-1]]
 
 k = int(input("Numero de centroides: "))
 
-KMeans(k, df, max_interacao=100)
+print(KMeans(k, df, max_interacao=100))
