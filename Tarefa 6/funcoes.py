@@ -1,13 +1,25 @@
 import pandas as pd
 import numpy as np
 import random
-from statistics import mean
 
 
 def KMeans(k, df, max_interacao):
   centroids = centroides(k, df)
   agrup_ini = agrup(centroids, df, k)
-  print(agrup_ini)
+
+  for i in range(max_interacao -1):
+    novos_centroids = media_novos_centroides(agrup_ini)
+    novo_agrupamento = agrup(novos_centroids, df, k)
+
+    # Checando se converge já na primeira interação
+    if centroids == novos_centroids:
+      break
+
+    novos_centroids = media_novos_centroides(agrup_ini)
+
+    if agrup_anterior == novo_agrupamento:
+      return novo_agrupamento
+      break    
 
 # Função que calcula os primeiros centroides aleatoriamente
 def centroides(k, df):
@@ -36,7 +48,7 @@ def media_novos_centroides(centroids):
     for key, value in lista.items():
         sub_medias = []
         for v in value:
-            m = round(mean(v), 2)
+            m = round(np.mean(v), 2)
             sub_medias.append(m)
 
             if len(sub_medias) == len(value): 
@@ -57,6 +69,7 @@ def distancia(obj1, obj2, dist=1):
 
   return round(resultado, 2)
 
+
 # Função que realiza o agrupamento dos pontos da base de dados 
 def agrup(centroides, df, k):
   clusters = {}
@@ -69,12 +82,14 @@ def agrup(centroides, df, k):
       menor = menor_dist(centroides, i, df)
       for k1, v in enumerate(clusters.values()):
         if menor[0] == k1:
+          if [] in v:
+              v.remove([])
           if df.iloc[i].values.tolist() not in v:
-            #v.remove([])
             v.append(df.iloc[i].values.tolist())
             clusters[k1+1] = v
         
   return clusters
+
 
 # Função que retorna o indice do centroide e a menor distancia do objeto a esse centroide
 def menor_dist(centroides, i, df):
@@ -99,12 +114,4 @@ def output_txt(listas):
       f.write(','+ str(i))
     f.write("\n")
   f.close()
-
-#def percorre(data, centros):
-#  lista_dist = []
-#  for i, (nome_col, dados_row) in enumerate(data.iteritems()):
-#    for centro in enumerate(centros):
-#      print(distancia(dados_row, centro, 1))
-#      break
-  
 
