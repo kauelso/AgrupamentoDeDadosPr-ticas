@@ -7,11 +7,8 @@ from statistics import mean
  
 df = pd.read_csv("iris.csv")
 
-# Retira a ultima coluna da base de dados
-df = df[df.columns[:-1]]
-
-#df.head()
-
 k = int(input("Numero de centroides: "))
 
-print(KMeans(k, df, max_interacao=100))
+grupos = KMeans(k, df, max_interacao=100)
+
+output_txt(grupos)

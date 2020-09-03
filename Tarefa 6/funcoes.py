@@ -6,7 +6,7 @@ import random
 def KMeans(k, df, max_interacao):
   centroids = centroides(k, df)
   agrupamento = agrup(centroids, df, k)
-  for i in range(max_interacao -1):
+  for i in range(max_interacao):
     novos_centroids = media_novos_centroides(agrupamento)
     if centroids == novos_centroids:
       break
@@ -103,9 +103,7 @@ def menor_dist(centroides, i, df):
 def output_txt(listas):
   f = open("output.txt", "w")
   for lista in listas:
-    f.write(str(lista[0]))
-    for i in lista[1:]:
-      f.write(','+ str(i))
+    f.write((str(lista) +": "+ str(listas[lista])))
     f.write("\n")
   f.close()
 
