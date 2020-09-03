@@ -5,7 +5,8 @@ import random
 
 def KMeans(k, df, max_interacao):
   centroids = centroides(k, df)
-  agrup_ini = agrup_inicial(centroids, df)
+  agrup_ini = agrup(centroids, df, k)
+  print(agrup_ini)
 
 # Função que calcula os primeiros centroides aleatoriamente
 def centroides(k, df):
@@ -56,7 +57,7 @@ def distancia(obj1, obj2, dist=1):
   return round(resultado, 2)
 
 # Função que realiza o agrupamento dos pontos da base de dados 
-def agrup(centroides, df=df):
+def agrup(centroides, df, k):
   clusters = {}
   for z in range(1,k+1):
     for r in range(k):
@@ -68,14 +69,14 @@ def agrup(centroides, df=df):
       for k1, v in enumerate(clusters.values()):
         if menor[0] == k1:
           if df.iloc[i].values.tolist() not in v:
-            v.remove([])
+            #v.remove([])
             v.append(df.iloc[i].values.tolist())
             clusters[k1+1] = v
         
   return clusters
 
 # Função que retorna o indice do centroide e a menor distancia do objeto a esse centroide
-def menor_dist(centroides, i, df=df):
+def menor_dist(centroides, i, df):
   distancias = []
   for e, c in enumerate(centroides.values()):
     dist = distancia(df.iloc[i], c)
