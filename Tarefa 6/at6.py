@@ -2,6 +2,7 @@ import pandas as pd
 import random
 import numpy as np
 from funcoes import *
+from statistics import mean
 
  
 df = pd.read_csv("iris.csv")
@@ -14,4 +15,5 @@ df = df[df.columns[:-1]]
 k = int(input("Numero de centroides: "))
 
 KMeans(k, df, max_interacao=100)
+
 

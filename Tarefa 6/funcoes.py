@@ -6,10 +6,9 @@ import random
 def KMeans(k, df, max_interacao):
   centroids = centroides(k, df)
   agrup_ini = agrup_inicial(centroids, df)
-  print(agrup_ini)
 
-
-def centroides(k, data):
+# Função que calcula os primeiros centroides aleatoriamente
+def centroides(k, df):
   centroides = {}
 
   for i in range(k):
@@ -21,8 +20,30 @@ def centroides(k, data):
 
   return centroides
 
-def distancia(obj1, obj2, dist=2):
-  
+# Função que calcula os novos centroides a partir da média
+def media_novos_centroides(centroids):
+    # Colocando os valores de mesmo index das sublistas nas mesmas sublistas para fazer a média
+    for i in centroids.keys():
+        lista = {}
+        for key, values in (centroids.items()):
+            res = [list(x) for x in zip(*values)] 
+            lista[key] = res
+
+    # Fazendo a média de cada nova sublista dos centroides
+    novos_centroides = {}
+    for key, value in lista.items():
+        sub_medias = []
+        for v in value:
+            m = round(mean(v), 2)
+            sub_medias.append(m)
+
+            if len(sub_medias) == len(value): 
+                novos_centroides.update({key: sub_medias})
+
+    return novos_centroides
+
+# Função que calcula a distancia euclidiana
+def distancia(obj1, obj2, dist=1):
   lista = []
 
   for (valor1, valor2) in zip(obj1, obj2):
@@ -34,9 +55,10 @@ def distancia(obj1, obj2, dist=2):
 
   return round(resultado, 2)
 
-
+# Função que realiza o agrupamento dos pontos da base de dados 
 def agrup_inicial(centroides, df):
   clusters = {n: 0 for n in range(0,df.shape[0])}
+
   for i in range(0, df.shape[0]):
     distancias = []
     for e, m in enumerate(centroides):
@@ -48,9 +70,10 @@ def agrup_inicial(centroides, df):
           if menor == b:
             clusters[i] = c
             break
+
   return clusters
 
-
+# Função final que escreve no arquivo
 def output_txt(listas):
   f = open("output.txt", "w")
   for lista in listas:
