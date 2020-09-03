@@ -1,11 +1,12 @@
 import pandas as pd
 import numpy as np
 import random
+from statistics import mean
 
 
 def KMeans(k, df, max_interacao):
   centroids = centroides(k, df)
-  agrup_ini = agrup_inicial(centroids, df)
+  agrup_ini = agrup(centroids, df,k)
 
 # Função que calcula os primeiros centroides aleatoriamente
 def centroides(k, df):
@@ -56,7 +57,7 @@ def distancia(obj1, obj2, dist=1):
   return round(resultado, 2)
 
 # Função que realiza o agrupamento dos pontos da base de dados 
-def agrup(centroides, df=df):
+def agrup(centroides, df,k):
   clusters = {}
   for z in range(1,k+1):
     for r in range(k):
@@ -75,7 +76,7 @@ def agrup(centroides, df=df):
   return clusters
 
 # Função que retorna o indice do centroide e a menor distancia do objeto a esse centroide
-def menor_dist(centroides, i, df=df):
+def menor_dist(centroides, i, df):
   distancias = []
   for e, c in enumerate(centroides.values()):
     dist = distancia(df.iloc[i], c)
