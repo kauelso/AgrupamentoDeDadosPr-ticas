@@ -103,7 +103,7 @@ def menor_dist(centroides, i, df):
 def output_txt(listas):
   f = open("output.txt", "w")
   for lista in listas:
-    f.write((str(lista) +": "+ str(listas[lista])))
-    f.write("\n")
+    f.write(("Grupo " + str(lista) +": "+ str(listas[lista])))
+    f.write("\n\n")
   f.close()
 
