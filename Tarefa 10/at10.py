@@ -14,6 +14,18 @@ except:
     print("Arquivo não é um csv ou não foi encontrado")
     sys.exit()
 
+#Computar a primeira matriz (pronto)
+
+#Encontrar menor valor (pronto)
+
+#Unir os grupos do menor valor
+
+#Atualizar a matriz
+
+#Encerrrar somente quando houver apenas um grupo
+
+#Gerar output
+
 
 # Imputando a média nos valores que estão faltando
 df.fillna(df.mean(), inplace=True)
