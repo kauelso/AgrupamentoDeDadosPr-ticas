@@ -25,12 +25,16 @@ def distancia_todos(df):
     resultado = []
     for i, l1 in enumerate(listas):
         r = []
-        for j, l2 in enumerate(listas[i:]):
+        for j, l2 in enumerate(listas):
             result = distancia(l1, l2)
-            if result != 0.0:
-                r.append(result)
+            if result == 0:
+              result = np.nan
+            r.append(result)
         resultado.append(r)
 
+    resultado = pd.DataFrame(resultado)
+    resultado = resultado[:-1]
+    
     return resultado
 
 
