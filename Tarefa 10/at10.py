@@ -29,7 +29,6 @@ indice_menor_valor = np.unravel_index(np.nanargmin(matriz, axis=None), matriz.sh
 print(indice_menor_valor)
 ind2 = indice_menor_valor[0]
 ind1 = indice_menor_valor[1]
-print(matriz[4][0])
 #Unir os grupos do menor valor
 matriz = list(matriz)
 #Atualizar a matriz
