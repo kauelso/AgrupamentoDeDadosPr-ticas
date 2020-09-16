@@ -15,7 +15,7 @@ from completar_dados import *
 #     print("Arquivo não é um csv ou não foi encontrado")
 #     sys.exit()
 
-df = pd.read_csv("iris.csv")
+df = pd.read_csv("teste.csv")
 
 #Computar a primeira matriz (pronto)
 matriz = distancia_todos(df)
@@ -23,21 +23,17 @@ matriz = distancia_todos(df)
 
 # print(matriz)
 #Encontrar menor valor (pronto)
+matriz = matriz.drop(0,1)
 print(matriz)
 indice_menor_valor = np.unravel_index(np.nanargmin(matriz, axis=None), matriz.shape)
 print(indice_menor_valor)
-ind1 = indice_menor_valor[0]
-ind2 = indice_menor_valor[1]
+ind2 = indice_menor_valor[0]
+ind1 = indice_menor_valor[1]
+print(matriz[4][0])
 #Unir os grupos do menor valor
-for i,l in enumerate(matriz[ind2]):
-    matriz[i][ind2] = min(matriz[i][ind2],matriz[i][ind1])
-print(matriz)
+matriz = list(matriz)
 #Atualizar a matriz
-
+print(matriz)
 #Encerrrar somente quando houver apenas um grupo
 
 #Gerar output
-
-
-# Imputando a média nos valores que estão faltando
-# df.fillna(df.mean(), inplace=True)
