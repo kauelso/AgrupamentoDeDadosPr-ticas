@@ -25,17 +25,26 @@ def distancia_todos(df):
     resultado = []
     for i, l1 in enumerate(listas):
         r = []
-        for j, l2 in enumerate(listas):
+        for j, l2 in enumerate(listas[:i]):
             result = distancia(l1, l2)
-            if result == 0:
-              result = np.nan
             r.append(result)
         resultado.append(r)
 
     resultado = pd.DataFrame(resultado)
-    resultado = resultado[:-1]
     
     return resultado
+
+def cols_agrup(matriz, indice_menor_valor):
+  cols = []
+  ind1, ind2 = matriz.columns[indice_menor_valor[0]], matriz.columns[indice_menor_valor[1]]
+  for col in matriz.columns:
+    if col == ind1:
+      cols.append(str(ind1)+','+str(ind2))
+      continue
+    if col == ind2:
+      continue
+    cols.append(col)
+  return cols
 
 
 def acha_pos_min(matriz):
