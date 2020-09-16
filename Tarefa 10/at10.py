@@ -22,17 +22,10 @@ matriz = distancia_todos(df)
 
 # print(matriz)
 #Encontrar menor valor (pronto)
-menor = acha_pos_min(df)
 print(matriz)
-# ind1 = menor[0]
-# ind2 = menor[1]
+indice_menor_valor = np.unravel_index(np.nanargmin(df, axis=None), df.shape)
+print(indice_menor_valor)
 #Unir os grupos do menor valor
-# for i in range(ind1,ind2):
-#     print(i)
-#     print(matriz[ind1][i])
-#     print(matriz[ind2][i])
-# matriz.remove(matriz[ind1])
-# print(matriz)
         
 #Atualizar a matriz
 
@@ -43,7 +36,3 @@ print(matriz)
 
 # Imputando a média nos valores que estão faltando
 # df.fillna(df.mean(), inplace=True)
-
-# print(acha_pos_min(distancia_todos(df)))
-# print(distancia_todos(df))
-# print(cols_agrup(df,menor))
