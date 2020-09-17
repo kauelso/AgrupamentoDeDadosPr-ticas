@@ -35,41 +35,6 @@ def distancia_todos(df):
     
     return resultado
 
-def cols_agrup(matriz, indice_menor_valor):
-  cols = []
-  ind1, ind2 = matriz.columns[indice_menor_valor[0]], matriz.columns[indice_menor_valor[1]]
-  for col in matriz.columns:
-    if col == ind1:
-      cols.append(str(ind1)+','+str(ind2))
-      continue
-    if col == ind2:
-      continue
-    cols.append(col)
-  return cols
-
-
-def acha_pos_min(matriz):
-
-    # Retira listas vazias, caso houver
-    matriz_sem_vazio = [x for x in matriz if x != []]
-
-    # Dicionário que conterá o menor valor de cada linha
-    minimo = {}
-
-    for i, l1 in enumerate(matriz_sem_vazio):
-        linha = i
-        coluna = l1.index(min(l1))
-        menor_valor_cada_linha = min(l1)
-
-        # Se algum valor se repetir, pegamos o primeiro que aparece
-        if menor_valor_cada_linha not in minimo:
-            minimo[menor_valor_cada_linha] = [linha, coluna]
-
-    # Achando o mínimo dos minimos
-    chave = min(minimo.keys())
-    minn = minimo[chave]
-
-    return minn
 
 def single_link(matriz):
     indice_menor_valor = np.unravel_index(np.nanargmin(matriz, axis=None), matriz.shape)
@@ -78,17 +43,20 @@ def single_link(matriz):
     #Unir os grupos do menor valor
     for i,c in enumerate(matriz.columns):
         minimo = min(matriz.iloc[ind1][c],matriz.iloc[ind2][c])
-        if ind1 < ind2:
+        if ind1 < ind2: #Coloca os menores valores no grupo de menor indice
             matriz.iloc[ind1][c] = minimo
             matriz.iloc[i][matriz.columns[ind1]] = minimo
         else:
             matriz.iloc[ind2][c] = minimo
             matriz.iloc[i][matriz.columns[ind2]] = minimo
     #Atualizar a matriz
-    if ind1 < ind2:
-        matriz.iloc[ind1][ind1] = float('nan')
+    if ind1 < ind2:#Verifica o menor indice
+        matriz.iloc[ind1][ind1] = float('nan') #Trata um bug causado pela funcao de minimo que substituia o
+        #NaN pelo menor valor 
+        #Renomeia o grupo
         matriz.rename(columns = {matriz.columns[ind1]: str(matriz.columns[ind1])+","+str(matriz.columns[ind2])},inplace= True)
         matriz.rename(index = {matriz.index[ind1]: str(matriz.index[ind1])+","+str(matriz.index[ind2])},inplace = True)
+        #Remove a linha e a coluna do mair índice do menor valor
         matriz.drop([matriz.index[ind2]],axis=0,inplace=True)
         matriz.drop([matriz.columns[ind2]],axis=1,inplace=True)
     else:
