@@ -23,19 +23,12 @@ matriz = distancia_todos(df)
 
 # print(matriz)
 #Encontrar menor valor (pronto)
+print(matriz)
+while len(matriz) != 1:
+    single_link(matriz)
+    print(matriz)
 
-single_link(matriz)
-print(matriz)
-single_link(matriz)
-print(matriz)
-single_link(matriz)
-print(matriz)
-single_link(matriz)
-print(matriz)
-single_link(matriz)
-print(matriz)
-single_link(matriz)
-print(matriz)
+
 #Encerrrar somente quando houver apenas um grupo
 
 #Gerar output

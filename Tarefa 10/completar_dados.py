@@ -77,7 +77,6 @@ def single_link(matriz):
     ind2 = indice_menor_valor[0]
     #Unir os grupos do menor valor
     for i,c in enumerate(matriz.columns):
-        print(i,c)
         minimo = min(matriz.iloc[ind1][c],matriz.iloc[ind2][c])
         if ind1 < ind2:
             matriz.iloc[ind1][c] = minimo
@@ -88,12 +87,16 @@ def single_link(matriz):
     #Atualizar a matriz
     if ind1 < ind2:
         matriz.iloc[ind1][ind1] = float('nan')
-        matriz.drop([ind2],axis=1,inplace=True)
-        matriz.drop([ind2],axis=0,inplace=True)
+        matriz.rename(columns = {matriz.columns[ind1]: str(matriz.columns[ind1])+","+str(matriz.columns[ind2])},inplace= True)
+        matriz.rename(index = {matriz.index[ind1]: str(matriz.index[ind1])+","+str(matriz.index[ind2])},inplace = True)
+        matriz.drop([matriz.index[ind2]],axis=0,inplace=True)
+        matriz.drop([matriz.columns[ind2]],axis=1,inplace=True)
     else:
         matriz.iloc[ind2][ind2] = float('nan')
-        matriz.drop([ind1],axis=1,inplace=True)
-        matriz.drop([ind1],axis=0,inplace=True)
+        matriz.rename(columns = {matriz.columns[ind2]: str(matriz.columns[ind2])+","+str(matriz.columns[ind1])},inplace= True)
+        matriz.rename(index = {matriz.index[ind2]: str(matriz.index[ind2])+","+str(matriz.index[ind1])},inplace= True)
+        matriz.drop([matriz.index[ind1]],axis=0,inplace=True)
+        matriz.drop([matriz.columns[ind1]],axis=1,inplace=True)
 
 
 def output_txt(listas):
