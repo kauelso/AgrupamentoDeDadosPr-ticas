@@ -31,7 +31,6 @@ def distancia_todos(df):
               result = np.nan
             r.append(result)
         resultado.append(r)
-    print(resultado)
     resultado = pd.DataFrame(resultado)
     
     return resultado

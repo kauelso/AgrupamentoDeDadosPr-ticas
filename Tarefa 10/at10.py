@@ -23,15 +23,29 @@ matriz = distancia_todos(df)
 
 # print(matriz)
 #Encontrar menor valor (pronto)
-matriz = matriz.drop(0,1)
-print(matriz)
 indice_menor_valor = np.unravel_index(np.nanargmin(matriz, axis=None), matriz.shape)
-print(indice_menor_valor)
 ind2 = indice_menor_valor[0]
 ind1 = indice_menor_valor[1]
 #Unir os grupos do menor valor
-matriz = list(matriz)
+for i in matriz.columns:
+    minimo = min(matriz.iloc[ind1][i],matriz.iloc[ind2][i])
+    if ind1 < ind2:
+        matriz.iloc[ind1][i] = minimo
+        matriz.iloc[i][ind1] = minimo
+    else:
+        matriz.iloc[ind2][i] = minimo
+        matriz.iloc[i][ind2] = minimo
 #Atualizar a matriz
+if ind1 < ind2:
+    matriz.drop([ind2],axis=1,inplace=True)
+    matriz.drop([ind2],axis=0,inplace=True)
+else:
+    matriz.drop([ind1],axis=1,inplace=True)
+    matriz.drop([ind1],axis=0,inplace=True)
+#     matriz.drop(matriz.columns[ind2], inplace=True)
+# else:
+#     matriz.drop(matriz.index[ind1], inplace=True)
+#     matriz.drop(matriz.columns[ind1], inplace=True)
 print(matriz)
 #Encerrrar somente quando houver apenas um grupo
 
