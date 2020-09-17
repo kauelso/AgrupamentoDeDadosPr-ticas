@@ -71,6 +71,30 @@ def acha_pos_min(matriz):
 
     return minn
 
+def single_link(matriz):
+    indice_menor_valor = np.unravel_index(np.nanargmin(matriz, axis=None), matriz.shape)
+    ind1 = indice_menor_valor[1]
+    ind2 = indice_menor_valor[0]
+    #Unir os grupos do menor valor
+    for i,c in enumerate(matriz.columns):
+        print(i,c)
+        minimo = min(matriz.iloc[ind1][c],matriz.iloc[ind2][c])
+        if ind1 < ind2:
+            matriz.iloc[ind1][c] = minimo
+            matriz.iloc[i][matriz.columns[ind1]] = minimo
+        else:
+            matriz.iloc[ind2][c] = minimo
+            matriz.iloc[i][matriz.columns[ind2]] = minimo
+    #Atualizar a matriz
+    if ind1 < ind2:
+        matriz.iloc[ind1][ind1] = float('nan')
+        matriz.drop([ind2],axis=1,inplace=True)
+        matriz.drop([ind2],axis=0,inplace=True)
+    else:
+        matriz.iloc[ind2][ind2] = float('nan')
+        matriz.drop([ind1],axis=1,inplace=True)
+        matriz.drop([ind1],axis=0,inplace=True)
+
 
 def output_txt(listas):
     f = open("output.txt", "w")
