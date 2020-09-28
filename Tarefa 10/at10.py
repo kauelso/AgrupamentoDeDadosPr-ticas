@@ -10,7 +10,7 @@ print(
 
 input_name = input("Nome do arquivo: ")
 try:
-    df = pd.read_csv(input_name)
+    df = pd.read_csv(input_name,header=0)
 except:
     print("Arquivo não é um csv ou não foi encontrado")
     sys.exit()
