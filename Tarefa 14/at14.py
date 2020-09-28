@@ -31,3 +31,5 @@ labels = km.labels_
 # Format results as a DataFrame
 df["cluster"] = labels
 print(df)
+
+count = df.groupby(["cluster","variety"]).count()
