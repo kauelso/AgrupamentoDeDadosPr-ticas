@@ -1,6 +1,5 @@
 import pandas as pd
 import random
-from funcoes import *
 import sys
 import numpy as np
 from statistics import mean
@@ -42,4 +41,4 @@ for k in range(2,5):
 
   frases.append(frase)
 
-  grava_arquivo(frases)
+grava_arquivo(frases)
